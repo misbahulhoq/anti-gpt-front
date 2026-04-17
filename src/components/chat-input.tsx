@@ -25,9 +25,11 @@ const ChatInput = ({
   isStreaming,
 }: Props) => {
   const [inputHeight, setInputHeight] = useState(0);
+
   const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     onSubmit();
+    setInputHeight(0);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -35,6 +37,7 @@ const ChatInput = ({
       event.preventDefault();
       console.log("Enter key pressed");
       onSubmit();
+      setInputHeight(0);
     }
   };
 
@@ -42,7 +45,7 @@ const ChatInput = ({
     <form
       onKeyDown={handleKeyDown}
       onSubmit={handleSubmit}
-      className={`border flex items-center ${inputHeight < 60 ? "rounded-full flex-row" : "rounded-lg flex-col"} min-h-14 max-h-40 max-w-3xl mx-auto`}
+      className={`border flex items-center ${inputHeight < 60 ? "rounded-full flex-row" : "rounded-lg flex-col"} min-h-14 max-h-40 max-w-3xl mx-auto ${value.length > 100 ? "border-destructive" : ""}`}
     >
       <Textarea
         placeholder={placeholder}
@@ -59,6 +62,10 @@ const ChatInput = ({
       />
 
       <div className={`pr-3 ml-3 ${inputHeight > 60 && "self-end mb-2"}`}>
+        {value.length > 100 && (
+          <span className="text-destructive pr-5">Message is too long</span>
+        )}
+
         <Tooltip>
           <TooltipTrigger disabled={isStreaming}>
             <span className="bg-primary text-primary-foreground flex items-center justify-center right-4 h-9 w-9 text-xl rounded-full">

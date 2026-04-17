@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ChatInput from "../chat-input";
 import { useSSEStream } from "@/hooks/useSSEStream";
 import { baseURL } from "@/lib/axios";
@@ -36,16 +36,18 @@ const TempChat = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 py-5 max-w-3xl h-full">
+    <div
+      className={`w-full flex flex-col gap-4 py-5 max-w-3xl flex-1 ${chats.length === 0 ? "justify-center min-h-full" : "h-full"} `}
+    >
       {/* ✅ Completed messages only */}
       {chats.map((chat, idx) =>
         chat.role === "user" ? (
           // ✅ Added return (arrow fn implicit return via ternary)
           <div
             key={idx}
-            className="max-w-2xl grow self-end px-4 text-right mb-5"
+            className="max-w-2xl grow self-end px-4 text-right pb-5"
           >
-            <p className="bg-muted px-4 py-2 rounded-lg text-right">
+            <p className="bg-muted px-4 py-2 pb-5 rounded-lg text-right">
               {chat.content}
             </p>
           </div>
@@ -70,7 +72,7 @@ const TempChat = () => {
       )}
 
       <div
-        className={`${chats.length > 0 ? "fixed" : ""}  bottom-0 pb-5 w-full bg-background pt-4 max-w-3xl mx-auto`}
+        className={`${chats.length > 0 ? "fixed" : ""} bottom-0 pb-5 w-full bg-background pt-4 max-w-3xl mx-auto`}
       >
         <ChatInput
           onChange={(message) => setPrompt(message)}
