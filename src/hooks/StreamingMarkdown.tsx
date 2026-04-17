@@ -67,7 +67,7 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
 
       {/* Blinking cursor rendered outside markdown */}
       {isStreaming && (
-        <span className="inline-block w-2 h-4 bg-foreground ml-0.5 animate-pulse rounded-sm" />
+        <span className="inline-block w-1 h-4 bg-foreground ml-0.5 animate-pulse rounded-sm" />
       )}
     </div>
   );

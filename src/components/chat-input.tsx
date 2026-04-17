@@ -14,6 +14,7 @@ type Props = {
   value: string;
   onChange: (message: string) => void;
   onSubmit: () => void;
+  isStreaming: boolean;
 };
 
 const ChatInput = ({
@@ -21,6 +22,7 @@ const ChatInput = ({
   onChange,
   value = "",
   onSubmit,
+  isStreaming,
 }: Props) => {
   const [inputHeight, setInputHeight] = useState(0);
   const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = (e) => {
@@ -58,7 +60,7 @@ const ChatInput = ({
 
       <div className={`pr-3 ml-3 ${inputHeight > 60 && "self-end mb-2"}`}>
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger disabled={isStreaming}>
             <span className="bg-primary text-primary-foreground flex items-center justify-center right-4 h-9 w-9 text-xl rounded-full">
               <ArrowUp size={24} className="h-6 w-6" />
             </span>

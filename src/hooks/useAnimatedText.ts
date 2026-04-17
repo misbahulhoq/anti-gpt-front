@@ -1,4 +1,3 @@
-// hooks/useAnimatedText.ts
 import { useState, useEffect, useRef } from "react";
 
 export function useAnimatedText(streamedText: string) {

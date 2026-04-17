@@ -36,7 +36,7 @@ const TempChat = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 py-5 max-w-3xl">
+    <div className="w-full flex flex-col gap-4 py-5 max-w-3xl h-full">
       {/* ✅ Completed messages only */}
       {chats.map((chat, idx) =>
         chat.role === "user" ? (
@@ -69,11 +69,14 @@ const TempChat = () => {
         </p>
       )}
 
-      <div className="fixed bottom-0 pb-5 w-full bg-background pt-4 max-w-3xl mx-auto">
+      <div
+        className={`${chats.length > 0 ? "fixed" : ""}  bottom-0 pb-5 w-full bg-background pt-4 max-w-3xl mx-auto`}
+      >
         <ChatInput
           onChange={(message) => setPrompt(message)}
           value={prompt}
           onSubmit={handleSend}
+          isStreaming={isStreaming}
         />
       </div>
     </div>
