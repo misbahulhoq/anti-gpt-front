@@ -47,7 +47,7 @@ const TempChat = () => {
             key={idx}
             className="max-w-2xl grow self-end px-4 text-right pb-5"
           >
-            <p className="bg-muted px-4 py-2 pb-5 rounded-lg text-right">
+            <p className="bg-muted px-4 text-lg py-2 rounded-lg text-right">
               {chat.content}
             </p>
           </div>
@@ -66,13 +66,13 @@ const TempChat = () => {
       )}
 
       {error && (
-        <p className="max-w-3xl mx-auto text-sm text-destructive px-4">
+        <p className="max-w-3xl text-destructive px-4">
           Error: {error.message}
         </p>
       )}
 
       <div
-        className={`${chats.length > 0 ? "fixed" : ""} bottom-0 pb-5 w-full bg-background pt-4 max-w-3xl mx-auto`}
+        className={`${chats.length > 0 ? "fixed" : ""} bottom-0 pb-5 w-full bg-background pt-4 px-4 max-w-3xl mx-auto`}
       >
         <ChatInput
           onChange={(message) => setPrompt(message)}

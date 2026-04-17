@@ -11,7 +11,7 @@ interface Props {
 
 export default function StreamingMarkdown({ text, isStreaming }: Props) {
   return (
-    <div className="prose prose-sm dark:prose-invert max-w-none text-base">
+    <div className="prose prose-sm dark:prose-invert max-w-none text-lg">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight]}
@@ -67,7 +67,7 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
 
       {/* Blinking cursor rendered outside markdown */}
       {isStreaming && (
-        <span className="inline-block w-1 h-4 bg-foreground ml-0.5 animate-pulse rounded-sm" />
+        <span className="inline-block w-3 rounded-full h-3 bg-foreground ml-0.5 animate-pulse" />
       )}
     </div>
   );
@@ -86,8 +86,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-muted 
-                 opacity-0 group-hover:opacity-100 transition-opacity"
+      className="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-muted opacity-0 group-hover:opacity-100 transition-opacity"
     >
       {copied ? "Copied!" : "Copy"}
     </button>

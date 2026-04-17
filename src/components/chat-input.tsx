@@ -48,15 +48,12 @@ const ChatInput = ({
       className={`border flex items-center ${inputHeight < 60 ? "rounded-full flex-row" : "rounded-lg flex-col"} min-h-14 max-h-40 max-w-3xl mx-auto ${value.length > 100 ? "border-destructive" : ""}`}
     >
       <Textarea
+        autoFocus
         placeholder={placeholder}
         className={`bg-neutral border-none focus:outline-none focus:ring-0 focus:border-none focus:shadow-none focus-visible:ring-0 text-lg ml-2 placeholder:text-lg placeholder:leading-none p-3 ${inputHeight < 60 ? "min-h-11" : "min-h-20"} max-h-36 overflow-y-auto`}
-        autoFocus
         onChange={(e) => {
           onChange(e.target.value);
           setInputHeight(e.target.scrollHeight);
-          console.log("client height", e.target.clientHeight);
-          console.log("scroll height", e.target.scrollHeight);
-          console.log("offset height", e.target.offsetHeight);
         }}
         value={value}
       />
