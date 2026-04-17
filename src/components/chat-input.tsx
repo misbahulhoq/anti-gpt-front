@@ -45,12 +45,12 @@ const ChatInput = ({
     <form
       onKeyDown={handleKeyDown}
       onSubmit={handleSubmit}
-      className={`border flex items-center ${inputHeight < 60 ? "rounded-full flex-row" : "rounded-lg flex-col"} min-h-14 max-h-40 max-w-3xl mx-auto ${value.length > 100 ? "border-destructive" : ""}`}
+      className={`flex items-center border ${inputHeight < 60 ? "flex-row rounded-full" : "flex-col rounded-lg"} mx-auto max-h-40 min-h-14 max-w-3xl ${value.length > 100 ? "border-destructive" : ""}`}
     >
       <Textarea
         autoFocus
         placeholder={placeholder}
-        className={`bg-neutral border-none focus:outline-none focus:ring-0 focus:border-none focus:shadow-none focus-visible:ring-0 text-lg ml-2 placeholder:text-lg placeholder:leading-none p-3 ${inputHeight < 60 ? "min-h-11" : "min-h-20"} max-h-36 overflow-y-auto`}
+        className={`bg-neutral ml-2 border-none p-3 text-lg placeholder:pt-0.5 placeholder:text-lg placeholder:leading-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none focus-visible:ring-0 md:text-lg ${inputHeight < 60 ? "min-h-11" : "min-h-20"} max-h-36 overflow-y-auto`}
         onChange={(e) => {
           onChange(e.target.value);
           setInputHeight(e.target.scrollHeight);
@@ -58,14 +58,14 @@ const ChatInput = ({
         value={value}
       />
 
-      <div className={`pr-3 ml-3 ${inputHeight > 60 && "self-end mb-2"}`}>
+      <div className={`ml-3 pr-3 ${inputHeight > 60 && "mb-2 self-end"}`}>
         {value.length > 100 && (
           <span className="text-destructive pr-5">Message is too long</span>
         )}
 
         <Tooltip>
           <TooltipTrigger disabled={isStreaming}>
-            <span className="bg-primary text-primary-foreground flex items-center justify-center right-4 h-9 w-9 text-xl rounded-full">
+            <span className="bg-primary text-primary-foreground right-4 flex h-9 w-9 items-center justify-center rounded-full text-xl">
               <ArrowUp size={24} className="h-6 w-6" />
             </span>
           </TooltipTrigger>

@@ -37,7 +37,7 @@ const TempChat = () => {
 
   return (
     <div
-      className={`w-full flex flex-col gap-4 py-5 max-w-3xl flex-1 ${chats.length === 0 ? "justify-center min-h-full" : "h-full"} `}
+      className={`flex w-full max-w-3xl flex-1 flex-col gap-4 py-5 ${chats.length === 0 ? "min-h-full justify-center" : "h-full"} `}
     >
       {/* ✅ Completed messages only */}
       {chats.map((chat, idx) =>
@@ -45,14 +45,14 @@ const TempChat = () => {
           // ✅ Added return (arrow fn implicit return via ternary)
           <div
             key={idx}
-            className="max-w-2xl grow self-end px-4 text-right pb-5"
+            className="max-w-2xl grow self-end px-4 pb-5 text-right"
           >
-            <p className="bg-muted px-4 text-lg py-2 rounded-lg text-right">
+            <p className="bg-muted rounded-lg px-4 py-2 text-right text-lg">
               {chat.content}
             </p>
           </div>
         ) : (
-          <div key={idx} className="max-w-3xl px-4 text-left mb-5">
+          <div key={idx} className="mb-5 max-w-3xl px-4 text-left">
             <StreamingMarkdown text={chat.content} isStreaming={false} />
           </div>
         ),
@@ -66,13 +66,13 @@ const TempChat = () => {
       )}
 
       {error && (
-        <p className="max-w-3xl text-destructive px-4">
+        <p className="text-destructive max-w-3xl px-4">
           Error: {error.message}
         </p>
       )}
 
       <div
-        className={`${chats.length > 0 ? "fixed" : ""} bottom-0 pb-5 w-full bg-background pt-4 px-4 max-w-3xl mx-auto`}
+        className={`${chats.length > 0 ? "fixed" : ""} bg-background bottom-0 mx-auto w-full max-w-3xl px-4 pt-4 pb-5`}
       >
         <ChatInput
           onChange={(message) => setPrompt(message)}
