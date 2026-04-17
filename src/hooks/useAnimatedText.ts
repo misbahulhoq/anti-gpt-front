@@ -33,11 +33,13 @@ export function useAnimatedText(streamedText: string) {
 
   // Instantly sync when streaming stops (no lag at the end)
   useEffect(() => {
-    if (streamedText === "") {
-      setDisplayedText("");
-      prevLengthRef.current = 0;
-      queueRef.current = [];
-    }
+    (async function () {
+      if (streamedText === "") {
+        setDisplayedText("");
+        prevLengthRef.current = 0;
+        queueRef.current = [];
+      }
+    })();
   }, [streamedText]);
 
   return displayedText;
