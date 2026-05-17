@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowUp } from "lucide-react";
 import {
@@ -41,6 +41,18 @@ const ChatInput = ({
     }
   };
 
+  useEffect(() => {
+    const chatInput = document.getElementById("chat-input");
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && (e.key === "i" || e.key === "I")) {
+        chatInput?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <form
       onKeyDown={handleKeyDown}
@@ -49,8 +61,9 @@ const ChatInput = ({
     >
       <Textarea
         autoFocus
+        id="chat-input"
         placeholder={placeholder}
-        className={`bg-neutral ml-2 border-none p-3 text-lg placeholder:pt-0.5 placeholder:text-lg placeholder:leading-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none focus-visible:ring-0 md:text-lg ${inputHeight < 60 ? "min-h-11" : "min-h-20"} max-h-36 overflow-y-auto`}
+        className={`bg-neutral ml-2 border-none p-3 text-lg placeholder:pt-1 placeholder:text-lg placeholder:leading-none focus:border-none focus:shadow-none focus:ring-0 focus:outline-none focus-visible:ring-0 md:text-lg ${inputHeight < 60 ? "min-h-11" : "min-h-20"} max-h-36 overflow-y-auto`}
         onChange={(e) => {
           onChange(e.target.value);
           setInputHeight(e.target.scrollHeight);

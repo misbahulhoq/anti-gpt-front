@@ -20,8 +20,8 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
           code({ className, children, ...props }) {
             const isBlock = className?.includes("language-");
             return isBlock ? (
-              <div className="relative group">
-                <pre className="rounded-lg overflow-x-auto">
+              <div className="group relative">
+                <pre className="overflow-x-auto rounded-lg">
                   <code className={className} {...props}>
                     {children}
                   </code>
@@ -30,7 +30,7 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
               </div>
             ) : (
               <code
-                className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono"
+                className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm"
                 {...props}
               >
                 {children}
@@ -40,8 +40,8 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
           // Tables
           table({ children }) {
             return (
-              <div className="overflow-x-auto my-4">
-                <table className="border-collapse w-full text-sm">
+              <div className="my-4 overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
                   {children}
                 </table>
               </div>
@@ -49,14 +49,14 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
           },
           th({ children }) {
             return (
-              <th className="border border-border px-3 py-2 bg-muted text-left font-semibold">
+              <th className="border-border bg-muted border px-3 py-2 text-left font-semibold">
                 {children}
               </th>
             );
           },
           td({ children }) {
             return (
-              <td className="border border-border px-3 py-2">{children}</td>
+              <td className="border-border border px-3 py-2">{children}</td>
             );
           },
         }}
@@ -67,7 +67,7 @@ export default function StreamingMarkdown({ text, isStreaming }: Props) {
 
       {/* Blinking cursor rendered outside markdown */}
       {isStreaming && (
-        <span className="inline-block w-3 rounded-full h-3 bg-foreground ml-0.5 animate-pulse" />
+        <span className="bg-foreground ml-0.5 inline-block h-3 w-3 animate-pulse rounded-full" />
       )}
     </div>
   );
@@ -86,7 +86,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-muted opacity-0 group-hover:opacity-100 transition-opacity"
+      className="bg-muted absolute top-2 right-2 rounded px-2 py-1 text-xs opacity-0 transition-opacity group-hover:opacity-100"
     >
       {copied ? "Copied!" : "Copy"}
     </button>
